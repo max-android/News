@@ -1,0 +1,14 @@
+<resources>
+    <dimen name="screen_padding">8dp</dimen>
+    <dimen name="item_padding">16dp</dimen>
+
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="app_bar_elevation">4dp</dimen>
+
+
+    <dimen name="vertical_padding">16dp</dimen>
+    <dimen name="titul_size">20sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+
+
+</resources>

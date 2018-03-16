@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="horizontal"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="4dp"
+    app:cardMaxElevation="8dp"
+    app:cardPreventCornerOverlap="true"
+    app:cardCornerRadius="2dp"
+    app:cardUseCompatPadding="true"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:padding="@dimen/item_padding"
+        android:background="?selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.myexamplenews.news.ui.general.roboto.RegularTextView
+            android:id="@+id/tvTitul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorText"
+            android:textSize="@dimen/titul_size"
+            tools:text="titul"
+            />
+
+        <com.myexamplenews.news.ui.general.roboto.MediumTextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitul"
+            android:layout_marginTop="@dimen/vertical_padding"
+            android:textColor="@color/dopcolorText"
+            android:textSize="@dimen/text_size"
+            tools:text="descriptions" />
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
+</LinearLayout>
