@@ -3,12 +3,14 @@ package com.myexamplenews.news.model.database.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 /**
  * Created by Максим on 14.03.2018.
  */
 
-@Entity(tableName = "news")
-public class NewsDB {
+@Entity(tableName = "newstable")
+public class NewsDB implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.RequestManager;
 import com.myexamplenews.news.R;
 import com.myexamplenews.news.di.app.App;
@@ -65,18 +64,23 @@ public class DetailFragment extends Fragment {
 
         App.getAppComponent().injectDetailFragment(this);
 
-//        Toolbar tbDetail = view.findViewById(R.id.tbDetail);
-//
-//        tbDetail.setTitle(getContext().getString(R.string.detail));
-//        tbDetail.setNavigationIcon(ContextCompat.getDrawable(getContext(),R.drawable.ic_arrow_back_24dp));
-      //  tbDetail.setNavigationOnClickListener(exit -> finish());
+
 
         ImageView image  = view.findViewById(R.id.image);
 
         TextView tvDetTitul = view.findViewById(R.id.tvDetTitul);
         TextView tvDescription = view.findViewById(R.id.tvDescription);
 
-        requestManager.load(item.getEnclosure().getUrl()).into(image);
+        if(item.getEnclosure()==null){
+
+            requestManager.load(Constants.IMAGE).into(image);
+
+        }else{
+
+            requestManager.load(item.getEnclosure().getUrl()).into(image);
+        }
+
+
         tvDetTitul.setText(item.getTitle());
         tvDescription.setText(item.getFulltext());
 

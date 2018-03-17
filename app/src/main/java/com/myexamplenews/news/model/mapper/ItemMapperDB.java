@@ -2,7 +2,7 @@ package com.myexamplenews.news.model.mapper;
 
 import com.myexamplenews.news.model.database.entity.NewsDB;
 import com.myexamplenews.news.model.pojo.Item;
-
+import com.myexamplenews.news.ui.general.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +18,21 @@ public class ItemMapperDB {
         List<NewsDB> newList=new ArrayList<>();
 
         for(Item item:items){
-            newList.add(new NewsDB(item.getTitle(),item.getPubDate(),item.getEnclosure().getUrl(),item.getFulltext()));
+
+        String url=" ";
+
+            if(item.getEnclosure()==null){
+
+                url=Constants.IMAGE;
+
+
+            }else{
+
+                url= item.getEnclosure().getUrl();
+            }
+
+
+            newList.add(new NewsDB(item.getTitle(),item.getPubDate(),url,item.getFulltext()));
         }
         return newList;
     }

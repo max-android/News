@@ -10,8 +10,7 @@ import com.myexamplenews.news.model.database.entity.NewsDB;
  */
 
 
-@Database(entities = {NewsDB.class
-        }, version = 1)
+@Database(entities = {NewsDB.class}, version = 1)
 public abstract class AppBase extends RoomDatabase {
 
     public abstract NewsDAO getNewsDAO();

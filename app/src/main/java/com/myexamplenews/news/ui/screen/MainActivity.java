@@ -31,11 +31,10 @@ private Toolbar toolbar;
 
         toolbar=(Toolbar)findViewById(R.id.tbMain);
         setSupportActionBar(toolbar);
-     //   toolbar.setTitle(getString(R.string.news));
+
         getSupportActionBar().setTitle(getString(R.string.news));
 
         fragmentManager = getSupportFragmentManager();
-       // fragmentManager.addOnBackStackChangedListener(this);
 
     }
 
@@ -47,26 +46,21 @@ private Toolbar toolbar;
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         transaction.replace(R.id.frame,newsFragment);
-       // transaction.addToBackStack(Constants.NAME_NEWS);
+
         transaction.commitAllowingStateLoss();
-        //fragmentManager.beginTransaction().replace(R.id.frame,newsFragment).commitAllowingStateLoss();
+
     }
 
 
     private void showDetailFragment(Item item){
-
-
-
 
         DetailFragment detailFragment = new DetailFragment();
         Bundle bundle=new Bundle();
         bundle.putSerializable(Constants.KEY,item);
         detailFragment.setArguments(bundle);
 
-
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        //fragmentManager.beginTransaction().replace(R.id.frame,detailFragment).commitAllowingStateLoss();
         transaction.replace(R.id.frame,detailFragment);
         transaction.addToBackStack(Constants.NAME_DET);
         transaction.commitAllowingStateLoss();
@@ -79,7 +73,6 @@ private Toolbar toolbar;
         showDetailFragment(item);
 
         toolbar.setTitle(getString(R.string.detail));
-        //toolbar.setNavigationIcon(ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_24dp));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(exit -> fragmentManager.popBackStack());
     }
@@ -92,11 +85,4 @@ private Toolbar toolbar;
 
     }
 
-
-//    @Override
-//    public void onBackStackChanged() {
-//
-//       // fragmentManager.popBackStack();
-//
-//    }
 }

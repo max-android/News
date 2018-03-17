@@ -16,7 +16,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.myexamplenews.news.R;
 import com.myexamplenews.news.di.app.App;
 import com.myexamplenews.news.model.pojo.Enclosure;
@@ -24,10 +23,8 @@ import com.myexamplenews.news.model.pojo.Item;
 import com.myexamplenews.news.presenter.NewsPresenter;
 import com.myexamplenews.news.presenter.NewsView;
 import com.myexamplenews.news.ui.general.SwipeManager;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.inject.Inject;
 
 /**
@@ -88,9 +85,6 @@ public class NewsFragment extends Fragment implements NewsView,NewsAdapter.NewsC
         newsSwipeRefresh.setOnRefreshListener(swipeManager);
         newsSwipeRefresh.setRefreshing(false);
 
-
-//        Toolbar tbNews = (Toolbar)view.findViewById(R.id.tbNews);
-//        tbNews.setTitle(getContext().getString(R.string.news));
 
         rvNews=(RecyclerView)view.findViewById(R.id.rvNews);
         rvNews.setLayoutManager(new LinearLayoutManager(getContext()));

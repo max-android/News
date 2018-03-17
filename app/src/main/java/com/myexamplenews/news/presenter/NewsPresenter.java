@@ -7,9 +7,7 @@ import com.myexamplenews.news.model.mapper.ItemMapper;
 import com.myexamplenews.news.model.mapper.ItemMapperDB;
 import com.myexamplenews.news.model.service.NewsService;
 import com.myexamplenews.news.ui.general.NetInspector;
-
 import javax.inject.Inject;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
@@ -45,6 +43,7 @@ public class NewsPresenter implements Presenter {
 
         if(netInspector.isOnline()){
 
+            Log.d("Online","Online");
             subscrition.add(newsService.rss()
                     .doOnError(error -> Log.d("ERROR",error.getMessage()))
                     .doOnSuccess(rss -> {
@@ -53,55 +52,30 @@ public class NewsPresenter implements Presenter {
                             database.getNewsDAO().deleteNews();
                         }
                         database.getNewsDAO().insertNews(ItemMapperDB.transform(rss.getChannel().getItem()));
+
                     })
                             .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe (rss -> view.showNews(rss.getChannel().getItem())
                             ,error -> view.showErrorLoadingNews()));
-
+                           // ,error -> Log.d("ERROR",error.getMessage())));
 
         }else{
 
             subscrition.add(database.getNewsDAO().getNews()
+                    .doOnSuccess(list-> {
+                        Log.d("SIZE_DB",  String.valueOf(database.getNewsDAO().getList().size()));
+                    })
                             .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(newsDBS -> view.showNews(ItemMapper.transform(newsDBS))
                             ,error ->view.showErrorLoadingNews()));
-
         }
-
-
-
-
-
-//        if(netInspector.isOnline()){
-//
-//            subscrition.add(metcastService.forecast(town.transfer(),days.transfer())
-//                    .doOnSuccess(metcast -> {
-//
-//                        database.getMetcastDao().deleteMetcast(town.transfer());
-//                        database.getMetcastDao().insertMetcast(converterDBData.convertDayForecastToDBForecast(town.transfer(),metcast.getList()));
-//
-//                    })
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe (metcast -> data.transmitData(metcast.getList())
-//                            ,error -> errors.transmitError(error.getMessage())));
-//
-//        }else{
-//
-//            subscrition.add(database.getMetcastDao().getMetcast(town.transfer())
-//                    .subscribeOn(Schedulers.io())
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe(list -> data.transmitData(converterDBData.convertDBForecastToDayForecast(list))
-//                            ,error -> errors.transmitError(error.getMessage())));
-//        }
 
     }
 
     @Override
     public void detach() {
-
 
         subscrition.clear();
 

@@ -30,6 +30,6 @@ public class DatabaseModule {
     @Singleton
     public AppBase provideDatabase(){
 
-        return   Room.databaseBuilder(context,AppBase.class, "dbnews").build();
+        return   Room.databaseBuilder(context,AppBase.class, "db_news").build();
     }
 }

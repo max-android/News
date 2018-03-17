@@ -21,6 +21,9 @@ public class Constants {
     public static final String NAME_DET ="name_det";
 
 
+    public static final String IMAGE ="http://agitki.ru/_bl/2/10359097.png";
+
+
 
 
 }
